@@ -10,9 +10,9 @@ The project structure is as follows:
 | Structure  |                                                  |
 |------------|--------------------------------------------------|
 | aem-base   | Base image that contains the aem-quickstart-$version.jar and the license.properties file and initial bootstap packages |
-| author     | Builds the aem-base image in the author run mode |
-| publish    | Builds the aem-base image in the publish run mode |
-| dispatcher | Builds an apache/haproxy server with the dispatcher module |
+| author     | Builds the aem-base image and sets it to the author run-mode |
+| publish    | Builds the aem-base image and sets it to the publish run-mode |
+| dispatcher | Builds an apache server with the dispatcher module and an haproxy server to mimic SSL |
 
 
 ## Disclaimer
