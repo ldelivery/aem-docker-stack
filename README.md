@@ -28,7 +28,7 @@ $ git clone {project url}
 2 - Copy the adobe proprietary (See disclaimer above) ```aem-quickstart-6.5.0.jar``` and ```license.properties``` files into the root of the ```aem-base``` folder. Make sure the files are named exactly like that.
 If you wish to use different filenames you can set these in the arg variable ```AEM_FILE```
 
-2.1 (Optional) Copy any additional AEM packages into the ```packages``` folder you want to install in your AEM instaces. For instance, I like to install the latest service packs, ACS Commons and some demo packages like the "wknd website" that later help me during development. So I copy the packages (zip) files into the aem-base package folder to ensure every run mode has these packages, and the "x-ray" package (zip) into the author packages folder, because it doesn't make sense to put it in the publisher (at least for me).
+2.1 (Optional) Copy any additional AEM packages into the ```packages``` folder you want to install in your AEM instaces (i.e. across all run modes). For instance, I like to install the latest service packs, ACS Commons and some demo packages like the "wknd website" that later help me during development. So I copy the packages (zip) files into the ```aem-base\packages``` folder to ensure every run mode has these packages, and the "x-ray" package (zip) into the ```author\packages``` folder, because it doesn't make sense to put it in the publisher (at least for me).
 
 3 - If you do not have a valid dispatcher configuration in your project and want one that matches the AMS cloud setup and that starts running immediately , run the script:
 
