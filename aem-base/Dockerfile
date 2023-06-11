@@ -1,5 +1,5 @@
 # Base Image
-FROM azul/zulu-openjdk:17-latest
+FROM openjdk:11
 
 # Description
 LABEL os="CentosOS" \

@@ -51,7 +51,7 @@ cp publisher_mem.zip ./aem-docker-stack/publish/packages
 
 ```shell
 $ chmod +x ./aem-docker-stack/dispatcher/init-dispatcher-config.sh
-$ ./aem-docker-stack/dispatcher/init-dispatcher-config.sh
+$ ./init-dispatcher-config.sh
 ```
 If you however have a dispatcher configuration available in your AEM project, simply bind your project's local path to the container paths (as shown in the docker-compose.yaml below).
 
@@ -98,6 +98,10 @@ In order for the dispatcher to work correctly, it is advisable to configure your
 |---------|---------------------------------------|
 | Windows | c:\Windows\System32\Drivers\etc\hosts |
 | Linux   | /etc/hosts |
+
+```shell
+$ sudo nano /etc/hosts
+```
 
 ```
 127.0.0.1 author.docker.local
