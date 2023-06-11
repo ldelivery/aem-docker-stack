@@ -1,7 +1,7 @@
 # AEM Docker Stack Environment
 
 The AEM Docker Stack Environment is a simple way to get a full 1-1-1 (Author - Publish - Dispatcher) Adobe AEM stack running in docker.
-It's very similar to the AMS (Adobe Managed Services) environment, and the Dockerfiles were written to allow the installation of packages the first time you run the instances. 
+It's very similar to the AMS (Adobe Managed Services) environment, and the Dockerfiles were written to allow the installation of packages in the base image or the different run modes (e.g. author and publisher).
 
 Since AMS uses the RHEL distro, the dispatcher is built on top of Centos7 and the aem-base image (from which the author and publish inherit from) are based on the [azul/zulu-openjdk:17-latest](https://hub.docker.com/r/azul/zulu-openjdk) which at the time of writing is the latest OpenJDK LTS (release 17).
 
@@ -9,9 +9,9 @@ The project structure is as follows:
 
 | Structure  |                                                  |
 |------------|--------------------------------------------------|
-| aem-base   | Base image that contains the aem-quickstart-$version.jar and the license.properties file and initial bootstap packages |
-| author     | Builds the aem-base image and sets it to the author run-mode |
-| publish    | Builds the aem-base image and sets it to the publish run-mode |
+| aem-base   | Base image for all run modes and should contains the aem-quickstart-$version.jar and the license.properties file and initial bootstap packages (see disclaimer above on how to get those) |
+| author     | Builds the aem-base image and sets the instance to the author run-mode |
+| publish    | Builds the aem-base image and sets the instance to the publish run-mode |
 | dispatcher | Builds an apache server with the dispatcher module and an haproxy server to mimic SSL |
 
 
@@ -28,7 +28,24 @@ $ git clone {project url}
 2 - Copy the adobe proprietary (See disclaimer above) ```aem-quickstart-6.5.0.jar``` and ```license.properties``` files into the root of the ```aem-base``` folder. Make sure the files are named exactly like that.
 If you wish to use different filenames you can set these in the arg variable ```AEM_FILE```
 
-2.1 (Optional) Copy any additional AEM packages into the ```packages``` folder you want to install in your AEM instaces (i.e. across all run modes). For instance, I like to install the latest service packs, ACS Commons and some demo packages like the "wknd website" that later help me during development. So I copy the packages (zip) files into the ```aem-base\packages``` folder to ensure every run mode has these packages, and the "x-ray" package (zip) into the ```author\packages``` folder, because it doesn't make sense to put it in the publisher (at least for me).
+```shell
+$ cp aem-quickstart-6.5.0.jar ~/aem-docker-stack/aem-base  && cp license.properties ~/aem-docker-stack/aem-base 
+```
+
+2.1 (Optional) If you would like certain packages to be installed by default in the base image, copy them (the zip files) into the ```aem-docker-stack/aem-base/packages``` folder. This will save you having to install these everytime you delete a container.
+
+```shell
+$ cp aem_service_pack17.zip ./aem-docker-stack/aem-base/packages && \
+cp acs_commons.zip ./aem-docker-stack/aem-base/packages && \
+cp wknd_sites.zip ./aem-docker-stack/aem-base/packages
+```
+
+2.2 (Optional) You can do the same to the author and/or Publisher if you wish to install packages specific to each instance.
+
+```shell
+$ cp x-ray.zip ./aem-docker-stack/author/packages && \
+cp publisher_mem.zip ./aem-docker-stack/publish
+```
 
 3 - If you do not have a valid dispatcher configuration in your project and want one that matches the AMS cloud setup and that starts running immediately , run the script:
 
