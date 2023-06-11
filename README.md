@@ -3,7 +3,7 @@
 The AEM Docker Stack Environment is a simple way to get a full 1-1-1 (Author - Publish - Dispatcher) Adobe AEM stack running in docker.
 It's very similar to the AMS (Adobe Managed Services) environment, and the Dockerfiles were written to allow the installation of packages in the base image or the different run modes (e.g. author and publisher).
 
-Since AMS uses the RHEL distro, the dispatcher is built on top of Centos7 and the aem-base image (from which the author and publish inherit from) are based on the [azul/zulu-openjdk:17-latest](https://hub.docker.com/r/azul/zulu-openjdk) which at the time of writing is the latest OpenJDK LTS (release 17).
+Since AMS uses the RHEL distro, the dispatcher is built on top of Centos7 and the aem-base image (from which the author and publish inherit from) are based on the OpenJDK:11.
 
 The project structure is as follows:
 
@@ -55,7 +55,9 @@ $ ./init-dispatcher-config.sh
 ```
 If you however have a dispatcher configuration available in your AEM project, simply bind your project's local path to the container paths (as shown in the docker-compose.yaml below).
 
-4 - Check all environment variables in ```.env.dispatcher.sh``` and change accordingly. The defaults are as follows:
+4 - Check all environment variables in ```.env.dispatcher.sh``` and change accordingly. Especially the author and publish ip's to match your own.
+
+The defaults are as follows:
 
 ```
 DISP_ID=docker
@@ -161,6 +163,9 @@ docker restart -t0 dispatcher
 The last command kills the container straight away without waiting for it to finish gracefully.
 
 
+# Tip
+
+Use [Portainer](https://www.portainer.io/) to admin your stack. It works great with it!
 
 
 
