@@ -32,7 +32,7 @@ If you wish to use different filenames you can set these in the arg variable ```
 $ cp aem-quickstart-6.5.0.jar ~/aem-docker-stack/aem-base  && cp license.properties ~/aem-docker-stack/aem-base 
 ```
 
-2.1 (Optional) If you would like certain packages to be installed by default in the base image, copy them (the zip files) into the ```aem-docker-stack/aem-base/packages``` folder. This will save you having to install these everytime you delete a container.
+2.1 (Optional) If you would like certain packages to be installed by default in the base image, copy them (the zip files) into the ```aem-docker-stack/aem-base/packages``` folder. This will save you having to install these packages manually (i.e. via package manager) everytime you delete a container.
 
 ```shell
 $ cp aem_service_pack17.zip ./aem-docker-stack/aem-base/packages && \
@@ -43,17 +43,17 @@ cp wknd_sites.zip ./aem-docker-stack/aem-base/packages
 2.2 (Optional) You can do the same to the author and/or Publisher if you wish to install packages specific to each instance.
 
 ```shell
-$ cp x-ray.zip ./aem-docker-stack/author/packages && \
-cp publisher_mem.zip ./aem-docker-stack/publish
+$ cp xraymode.zip ./aem-docker-stack/author/packages && \
+cp publisher_mem.zip ./aem-docker-stack/publish/packages
 ```
 
 3 - If you do not have a valid dispatcher configuration in your project and want one that matches the AMS cloud setup and that starts running immediately , run the script:
 
 ```shell
-$ chmod +x ./dispatcher/scripts/init-dispatcher-config.sh
-$ ./dispatcher/init-dispatcher-config.sh
+$ chmod +x ./aem-docker-stack/dispatcher/init-dispatcher-config.sh
+$ ./aem-docker-stack/dispatcher/init-dispatcher-config.sh
 ```
-If however you do have a dispatcher configuration available in your project, simply bind your project's local path to the container paths (as shown in the docker-compose.yaml below).
+If you however have a dispatcher configuration available in your AEM project, simply bind your project's local path to the container paths (as shown in the docker-compose.yaml below).
 
 4 - Check all environment variables in ```.env.dispatcher.sh``` and change accordingly. The defaults are as follows:
 
