@@ -3,7 +3,7 @@
 The AEM Docker Stack Environment is a simple way to get a full 1-1-1 (Author - Publish - Dispatcher) Adobe AEM stack running in docker.
 It's very similar to the AMS (Adobe Managed Services) environment, and the Dockerfiles were written to allow the installation of packages in the base image or the different run modes (e.g. author and publisher).
 
-Since AMS uses the RHEL distro, the dispatcher is built on top of Centos7 and the aem-base image (from which the author and publish inherit from) are based on the OpenJDK:11.
+Since AMS uses the RHEL distro, the dispatcher is built on top of Centos7 and the aem-base image (from which the author and publish inherit from) are based on the [amazoncorretto](https://hub.docker.com/_/amazoncorretto):11 image .
 
 The project structure is as follows:
 

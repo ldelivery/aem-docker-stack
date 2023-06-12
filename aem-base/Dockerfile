@@ -1,5 +1,5 @@
 # Base Image
-FROM openjdk:11
+FROM amazoncorretto:11
 
 # Description
 LABEL os="CentosOS" \
