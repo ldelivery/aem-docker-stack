@@ -15,11 +15,14 @@ ARG PACKAGE_TO="./crx-quickstart/install"
 # Filename for the AEM jar file
 ARG AEM_FILE="aem-quickstart-6.5.0.jar"
 
+# Filename for AEM license.properties file
+ARG AEM_LICENSE="license.properties"
+
 # Working directory
 WORKDIR /opt/aem
 
 # Copy base jar and license files into working directory
-COPY license.properties .
+COPY $AEM_LICENSE .
 COPY $AEM_FILE .
 
 # Simply unpack the jar file. No run mode set at this stage
