@@ -1,10 +1,10 @@
 # Base Image
-FROM amazoncorretto:11
+FROM adoptopenjdk/openjdk11:aarch64-centos-jdk-11.0.11_9-slim
 
 # Description
-LABEL os="CentosOS" \
-container.description="Centos with tiny" \
-image.name="centos-tini"
+# LABEL os="CentosOS" \
+# container.description="Centos with tiny" \
+# image.name="centos-tini"
 
 # Put in this folder anything you want AEM to be bundled with or pass blank to start without anything
 ARG PACKAGE_FROM="packages/" 

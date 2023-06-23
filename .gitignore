@@ -20,7 +20,7 @@ dist/
 *.jar
 
 # Zip files (e.g. packages code, etc)
-*.zip
+#*.zip
 
 # Maven
 target/

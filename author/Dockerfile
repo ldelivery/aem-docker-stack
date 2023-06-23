@@ -26,16 +26,17 @@ ENV AEM_JVM_OPTS="${AEM_JVM_OPTS}" \
     AEM_PORT="${AEM_PORT}" \
     AEM_ENV="${AEM_ENV}"
 
-#Using tini in order to terminate aem gracefully. 
-#AEM spawns processes outside the main process and tini takes care of it.
-ENV TINI_VERSION v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
+# #Using tini in order to terminate aem gracefully. 
+# #AEM spawns processes outside the main process and tini takes care of it.
+# ENV TINI_VERSION v0.19.0
+# ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+# RUN chmod +x /tini
 
 COPY scripts/*.sh ./custom_scripts/
 RUN chmod +x /opt/aem/custom_scripts/*.sh
 
-# Hot drop AEM packages in the hot drop folder within AEM
+# # Hot drop AEM packages in the hot drop folder within AEM
 COPY $PACKAGE_FROM $PACKAGE_TO
 
-ENTRYPOINT ["/tini", "--","/opt/aem/custom_scripts/aem-start.sh"]
+# ENTRYPOINT ["/tini", "--","/opt/aem/custom_scripts/aem-start.sh"]
+ENTRYPOINT ["/opt/aem/custom_scripts/aem-start.sh"]

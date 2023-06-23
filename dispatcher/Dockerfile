@@ -1,8 +1,8 @@
-FROM centos:7.8.2003
+FROM arm64v8/rockylinux:8
 
 # Install httpd (apache) haproxy and all required programs
 RUN yum -y update && \
-yum -y install httpd mod_ssl procps haproxy iputils tree telnet less && \
+yum -y install httpd mod_ssl procps haproxy iputils tree telnet less openssl && \
 yum clean all
 
 # Remove default CentOS config
